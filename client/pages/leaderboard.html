@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="../styles/leaderboard.css" />
-    <title>Leaderboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../styles/leaderboard.css" />
+  <title>Leaderboard | Solitaire</title>
 </head>
 <body>
-    <div
-     id = "Leaderboard-container" 
-     class = "Leaderboard-container"
-    >
-
+  <header class="header">
+    <div class="logo">
+      <p>🃏 Solitaire</p>
     </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../scripts/leaderboard.js"></script>
+  <main>
+    <section id="leaderboard-container" class="leaderboard-container">
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Solitaire. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../scripts/leaderboard.js"></script>
 </body>
 </html>
