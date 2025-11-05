@@ -1,7 +1,7 @@
 <?php
 
 // include db connection
-include "db_connection.php";
+include "../db_connection.php";
 
 // prepare db query
 $sql = "SELECT * FROM Scores ORDER BY score DESC , duration ASC";

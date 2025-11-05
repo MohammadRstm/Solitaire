@@ -1,0 +1,64 @@
+// initialize document varibles
+const leaderBoardTableElem = document.getElementById("leaderboard-container");
+
+// Server base url - (must be hidden in a real project)
+const BASE_URL = "http://localhost/server";
+
+let scores = [];// scores state 
+
+const displayDuration = (duration) =>{
+    if(duration < 60 ){// display in min
+        return(`
+            ${duration} sec
+        `);
+    }else{
+        const minutes = Math.floor(duration / 60);
+        const remaindingSeconds = duration % 60;
+        return(`
+            ${minutes} : ${remaindingSeconds.toString().padStart(2 , "0")} min
+        `);
+    }
+};
+
+const fetchScores = () =>{  
+    // API CALL TO GET SCORES
+    axios.get(`${BASE_URL}/api/get_scores.php`)
+        .then(response => {
+            scores = response.data; 
+        })
+        .catch(err => {
+            console.log("ERROR FETCHING SCORES : " + err);
+        });
+    if(scores.length > 0){
+        leaderBoardTableElem.innerHTML = `
+            <table class = "leaderboard-table">
+                <thead>
+                    <th>Full Name</th>
+                    <th>Score</th>
+                    <th>Duration</th>
+                </thead>
+                ${scores.forEach(sc => {
+                    return(`
+                        <tr>
+                            <td>${sc.fullName}</td>
+                            <td>${sc.score}</td>
+                            <td>${displayDuration(sc.duration)}</td>
+                        </tr>
+                    `)
+                })}
+            </table>
+        `;
+    }else{
+        leaderBoardTableElem.innerHTML = `
+            <p class= "no-scores-header">
+             No scores yet, head to the 
+             <a href ="../index.html">landing page </a>
+             to add yours!
+            </p>
+        `;
+    }
+};
+
+fetchScores();
+
+

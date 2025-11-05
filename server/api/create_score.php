@@ -1,6 +1,6 @@
 <?php
 // include db connection
-include "db_connection.php";
+include "../db_connection.php";
 
 // Define range for score/duration 
 define("MAX_SCORE" , 1000);
