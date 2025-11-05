@@ -4,7 +4,7 @@
 include "db_connection.php";
 
 // prepare db query
-$sql = "SELECT * FROM Scores";
+$sql = "SELECT * FROM Scores ORDER BY score DESC , duration ASC";
 $query = $mysql->prepare($sql);
 
 if(!$query){
