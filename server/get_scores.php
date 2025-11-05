@@ -17,8 +17,14 @@ if(!$query->execute()){
 
 // fetch result
 $result = $query->get_result();
+$socres = [];
+if($result && $result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        $socres[] = $row;
+    }
+}
 // send json response
-echo json_encode($result);
+echo json_encode($socres);
 
 // close query/db_connection
 $query->close();
