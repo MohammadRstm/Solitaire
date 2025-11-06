@@ -20,13 +20,13 @@ const displayDuration = (duration) =>{
     }
 };
 
-const fetchScores = () =>{  
+const fetchScores = async () =>{  
     // API CALL TO GET SCORES
-    axios.get(`${BASE_URL}/api/get_scores.php`)
-        .then(response => {
-            scores = response.data;
-            if(scores.length > 0){
-                leaderBoardTableElem.innerHTML = `
+    try{
+    const response = await axios.get(`${BASE_URL}/api/get_scores.php`);
+        scores = response.data;
+        if(scores.length > 0){
+            leaderBoardTableElem.innerHTML = `
                     <table class = "leaderboard-table">
                         <thead>
                             <th>Full Name</th>
@@ -46,8 +46,8 @@ const fetchScores = () =>{
                         </tbody>
                     </table>
                 `;
-            }else{
-                leaderBoardTableElem.innerHTML = `
+        }else{
+            leaderBoardTableElem.innerHTML = `
                     <p class= "no-scores-header">
                     No scores yet, head to the 
                     <a href ="../index.html">landing page </a>
@@ -55,10 +55,9 @@ const fetchScores = () =>{
                     </p>
                 `;
             }
-        })
-        .catch(err => {
-            console.log("ERROR FETCHING SCORES : " + err);
-        });
+    }catch(err){
+        console.log("ERROR FETCHING SCORES : " + err);
+    }
 };
 
 fetchScores();

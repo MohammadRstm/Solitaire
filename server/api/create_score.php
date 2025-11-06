@@ -1,6 +1,6 @@
 <?php
 // include db connection
-include "../db_connection.php";
+include "../connections/db_connection.php";
 
 // Define range for score/duration 
 define("MAX_SCORE" , 1000);
@@ -13,11 +13,18 @@ define("MIN_DURATION" , 30); // 30 seconds (duh)
 $newScore = mt_rand(MIN_SCORE , MAX_SCORE);
 $newDuration = mt_rand(MIN_DURATION , MAX_DURATION);
 
-// receive full name
-$fullName = $_POST["fullName"];
+// initailize response
+$response = [];
 
-if(!$fullName)
-    $fullName = "Anonymous";
+// receive full name
+if(isset($_POST["fullName"])){
+    $fullName = $_POST["fullName"];
+}else{
+    $response["success"] = false;
+    $response["error"] = "Full name not provided";
+    echo json_encode($response);
+    exit();
+}
 
 // prepare db query
 $sql = "INSERT INTO Scores(full_name , score , duration) VALUES(? , ? , ?)";
@@ -32,7 +39,13 @@ $query->bind_param("sii" ,$fullName , $newScore , $newDuration);
 if(!$query->execute()){
     die("EXECUTION FAILED : " . $query->error);
 }
+header('Content-Type: application/json');
 
+$response["success"] = true;
+$response["score"] = $newScore;
+$response["duratoin"] = $newDuration;
+
+echo json_encode($response);
 // close query/db_connection
 $query->close();
 $mysql->close();
