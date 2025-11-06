@@ -1,8 +1,14 @@
+@font-face {
+  font-family: "SolitaireFont";
+  src: url("../fonts/VeniteAdoremusStraight-Yzo6v.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", Arial, sans-serif;
 }
 
 body {
@@ -14,109 +20,163 @@ body {
 }
 
 .header {
-  background: #fff;
-  padding: 1rem 2rem;
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: transparent; 
+  z-index: 10; 
 }
 
-.header .logo p {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #2b2b2b;
+.header .logo a{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff; 
+    text-decoration: none;
+}
+
+.header .logo img{
+    background: fixed;
+    background-color: transparent;
+    width: 80px;
+    height: auto;
 }
 
 .nav-links {
   list-style: none;
 }
 
+
 .nav-links li {
   display: inline-block;
   margin-left: 1.5rem;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #2b2b2b;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out;
+.nav-links li a img {
+    width: 80px;
+    height: auto;
 }
 
-.nav-links a:hover {
-  color: #0077ff;
+.nav-links a img:hover {
+    color: #ffd700; 
 }
 
 .hero-container {
-  text-align: center;
-  padding: 2rem 1rem;
+  position: relative;
+  height: 100vh;
+  background: url("../public/solitairehero.jpg") center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  padding-left: 5%;
 }
 
-.hero-image {
-  width: 240px;
-  max-width: 80%;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.hero-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); 
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  text-align: left;
+  padding: 1rem;
+  margin-top: 10rem;
 }
 
 .about-section {
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  color: #444;
-  max-width: 600px;
-  margin-inline: auto;
+  font-size: 1.2rem;
+  color : rgb(246, 182, 5);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-family: "SolitaireFont", sans-serif; 
+}
+.about-section h2 {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 .download-buttons {
-  margin-top: 1.5rem;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  justify-content: flex-start;
+  align-items: end;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.download {
-  padding: 0.8rem 1.4rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  color: #fff;
+.download img.store-icon-apple {
+  width: 100px;
+  height: auto;
 }
 
-.apple-download {
-  background: #1362e0;
+.download img.store-icon-android {
+  width: 300px;
+  height: auto;
 }
 
-.android-download {
-  background: #3ddc84;
-}
-
-.download:hover {
-  opacity: 0.85;
-  transform: translateY(-2px);
+.apple-download:hover,.android-download:hover {
+  background-color: #00000000;
+  transform: translateY(-1px);
 }
 
 .add-form-container {
   display: flex;
+  background-image: url(../public/greenCarpet.webp);
+  align-items: center;
   justify-content: center;
-  padding: 2rem 1rem;
+  height: 100vh; 
+  padding: 4rem 2rem;
+  gap: 4rem;
+}
+
+.form-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-image img {
+  width: 70%;
+  max-width: 400px;
+  height: auto;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2));
+}
+
+.form-content {
+  flex: 1;
+  text-align: left;
+}
+
+.form-content h1 {
+  font-family: "SolitaireFont", sans-serif;
+  font-size: 3rem;
+  color: #222;
+  margin-bottom: 2rem;
 }
 
 .add-form {
   display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
 }
 
 .add-form input[type="text"] {
-  padding: 0.7rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 260px;
-  outline: none;
+  padding: 1rem 1.2rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 1rem;
   transition: border-color 0.2s;
 }
 
@@ -125,28 +185,30 @@ body {
 }
 
 .add-form input[type="submit"] {
-  padding: 0.7rem 1.4rem;
+  padding: 0.9rem 2rem;
   background: #0077ff;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.2s ease-in-out;
+  font-size: 1rem;
+  transition: background 0.25s ease-in-out, transform 0.2s;
 }
 
 .add-form input[type="submit"]:hover {
   background: #005ed9;
+  transform: translateY(-2px);
 }
 
 .footer {
   text-align: center;
   padding: 1rem;
-  background: #fff;
-  color: #666;
+  background: #016806;
+  color: #ffffff;
   margin-top: auto;
   font-size: 0.9rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #003d03;
 }
 
 @media (max-width: 600px) {
@@ -156,5 +218,27 @@ body {
 
   .hero-image {
     width: 200px;
+  }
+}
+
+@media (max-width: 900px) {
+  .add-form-container {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .form-image img {
+    width: 60%;
+    margin-bottom: 2rem;
+  }
+
+  .form-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .add-form {
+    align-items: center;
   }
 }
