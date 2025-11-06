@@ -6,19 +6,6 @@ const BASE_URL = "http://localhost/solitaire/server";
 
 let scores = [];// scores state 
 
-const displayDuration = (duration) =>{
-    if(duration < 60 ){// display in min
-        return(`
-            ${duration} sec
-        `);
-    }else{
-        const minutes = Math.floor(duration / 60);
-        const remaindingSeconds = duration % 60;
-        return(`
-            ${minutes} : ${remaindingSeconds.toString().padStart(2 , "0")} min
-        `);
-    }
-};
 
 const fetchScores = async () =>{  
     // API CALL TO GET SCORES
@@ -29,14 +16,16 @@ const fetchScores = async () =>{
             leaderBoardTableElem.innerHTML = `
                     <table class = "leaderboard-table">
                         <thead>
+                            <th>Rank</th>
                             <th>Full Name</th>
                             <th>Score</th>
                             <th>Duration</th>
                         </thead>
                         <tbody>
-                            ${scores.map(sc => (
+                            ${scores.map((sc,ind) => (
                                 `
                                     <tr>
+                                        <td>${ind + 1}</td>
                                         <td>${sc.full_name}</td>
                                         <td>${sc.score}</td>
                                         <td>${displayDuration(sc.duration)}</td>

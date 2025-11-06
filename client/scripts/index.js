@@ -1,22 +1,29 @@
-const scoreFormElem = document.getElementById("scoreForm");
+const scoreFormElem = document.getElementById("scoreSubmitButton");
+const fullNameInputElem = document.getElementById("fullNameInput");
 
+const BASE_URL = "http://localhost/solitaire/server";
 
-scoreFormElem.addEventListener("submite" , (e) => {
-    e.preventDefault();
+scoreFormElem.addEventListener("click" , async () => {
+    const full_name = fullNameInputElem.value;
 
-    const full_name = scoreFormElem.fullName.value;
-    if(!full_name){
+    if(!full_name){// shouldn't happen
         alert("Please enter your full name");
         return;
     } 
-
-    axios.post(`${BASE_URL}/api/create_score` , {
-        fullName : full_name
-    })
-    .then(response => {// must return score and duration
-        alert("Score added successfuly\nYour Score = ");
-    })
-    .catch(err =>{
-        console.log("ERROR CREATING SCORE : " + err);
-    });
+    try{
+        const response = await axios.post(`${BASE_URL}/api/create_score.php` , {
+            fullName : full_name
+        });
+        const data = response.data;
+        if (data?.success){
+            const {score , duration , placement} = data;
+            alert(`Your Record have been successfuly added:\n
+                   Score : ${score}\n
+                   Duration: ${displayDuration(duration)}\n
+                   Placement: ${placement}`);
+        }
+        fullNameInputElem.value = "";
+    }catch(err){
+        console.log(err);
+    }
 });

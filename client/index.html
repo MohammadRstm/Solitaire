@@ -29,13 +29,13 @@
                 href="https://apps.apple.com/us/app/solitaire/id359917414"
                 target="_blank"
                 >
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg"
+                <img src="public/App_Store_(iOS).svg"
                     alt="App Store" class="store-icon-apple">
             </a>
             <a class="download android-download"
                 href="https://play.google.com/store/apps/details?id=com.mobilityware.solitaire"
                 target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                <img src="public/Google_Play_Store_badge_EN.svg"
                     alt="Google Play" class="store-icon-android">
             </a>
             </div>
@@ -48,11 +48,11 @@
         </div>
 
         <div class="form-content">
-            <h1>Enter Your Score!</h1>
-            <form id="scoreForm" class="add-form" method="post" action="">
-            <input type="text" name="fullName" placeholder="Enter your full name..." required />
-            <input type="submit" name="submit" value="Submit" />
-            </form>
+            <h1>Enter Your Name!</h1>
+            <div  class="add-form">
+            <input type="text" id="fullNameInput" placeholder="Enter your full name..." required />
+            <button class="score-submit-button"  id="scoreSubmitButton">Submit</button>
+            </div>
         </div>
     </section>
   </main>
@@ -61,6 +61,7 @@
     <p>&copy; 2025 Solitaire. All rights reserved.</p>
   </footer>
   <script src="./scripts/axios.min.js"></script>
+  <script src="./utils/displayDuration.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

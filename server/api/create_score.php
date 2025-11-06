@@ -1,6 +1,6 @@
 <?php
 // include db connection
-include "../connections/db_connection.php";
+include "../database/db_connection.php";
 
 // Define range for score/duration 
 define("MAX_SCORE" , 1000);
@@ -16,9 +16,11 @@ $newDuration = mt_rand(MIN_DURATION , MAX_DURATION);
 // initailize response
 $response = [];
 
+
 // receive full name
-if(isset($_POST["fullName"])){
-    $fullName = $_POST["fullName"];
+$data = json_decode(file_get_contents('php://input'), true);
+if(isset($data)){
+    $fullName = $data["fullName"];
 }else{
     $response["success"] = false;
     $response["error"] = "Full name not provided";
@@ -37,16 +39,36 @@ if(!$query){
 $query->bind_param("sii" ,$fullName , $newScore , $newDuration);
 
 if(!$query->execute()){
+    
     die("EXECUTION FAILED : " . $query->error);
 }
-header('Content-Type: application/json');
+
+// get user's placement
+$placementSql = "SELECT COUNT(*) AS rank FROM Scores WHERE score > ? OR (score = ? AND duration < ?)";// checks how many different scores are better than the current one OR are the same but duratoin is less 
+$placementQuery = $mysql->prepare($placementSql);
+
+if(!$placementQuery){
+    die("QUERY FAILED : " . $mysql->error);
+}
+
+$placementQuery->bind_param("iii", $newScore, $newScore, $newDuration);
+
+if (!$placementQuery->execute()){
+    die("EXECUTION FAILED : " . $placementQuery->error);
+}
+
+$placementResult = $placementQuery->get_result();
+$placementRow = $placementResult->fetch_assoc();
+$placement = $placementRow["rank"] + 1;// $placementRow["rank"] is number of ranks above me , +1 reaches my rank
 
 $response["success"] = true;
 $response["score"] = $newScore;
-$response["duratoin"] = $newDuration;
+$response["duration"] = $newDuration;
+$response["placement"] = $placement;
 
 echo json_encode($response);
 // close query/db_connection
+$placementQuery->close();
 $query->close();
 $mysql->close();
 ?>

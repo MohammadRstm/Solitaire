@@ -184,7 +184,7 @@ body {
   border-color: #0077ff;
 }
 
-.add-form input[type="submit"] {
+.score-submit-button {
   padding: 0.9rem 2rem;
   background: #0077ff;
   color: #fff;
