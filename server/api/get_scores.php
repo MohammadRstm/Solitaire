@@ -17,14 +17,16 @@ if(!$query->execute()){
 
 // fetch result
 $result = $query->get_result();
-$socres = [];
+
+$scores = [];
 if($result && $result->num_rows > 0){
     while($row = $result->fetch_assoc()){
-        $socres[] = $row;
+        $scores[] = $row;
     }
 }
+
 // send json response
-echo json_encode($socres);
+echo json_encode($scores);
 
 // close query/db_connection
 $query->close();
