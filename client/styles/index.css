@@ -1,0 +1,244 @@
+@font-face {
+  font-family: "SolitaireFont";
+  src: url("../fonts/VeniteAdoremusStraight-Yzo6v.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f6fa;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent; 
+  z-index: 10; 
+}
+
+.header .logo a{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff; 
+    text-decoration: none;
+}
+
+.header .logo img{
+    background: fixed;
+    background-color: transparent;
+    width: 80px;
+    height: auto;
+}
+
+.nav-links {
+  list-style: none;
+}
+
+
+.nav-links li {
+  display: inline-block;
+  margin-left: 1.5rem;
+}
+
+.nav-links li a img {
+    width: 80px;
+    height: auto;
+}
+
+.nav-links a img:hover {
+    color: #ffd700; 
+}
+
+.hero-container {
+  position: relative;
+  height: 100vh;
+  background: url("../public/solitairehero.jpg") center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: white;
+  padding-left: 5%;
+}
+
+.hero-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); 
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  text-align: left;
+  padding: 1rem;
+  margin-top: 10rem;
+}
+
+.about-section {
+  font-size: 1.2rem;
+  color : rgb(246, 182, 5);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  font-family: "SolitaireFont", sans-serif; 
+}
+.about-section h2 {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.download img.store-icon-apple {
+  width: 100px;
+  height: auto;
+}
+
+.download img.store-icon-android {
+  width: 300px;
+  height: auto;
+}
+
+.apple-download:hover,.android-download:hover {
+  background-color: #00000000;
+  transform: translateY(-1px);
+}
+
+.add-form-container {
+  display: flex;
+  background-image: url(../public/greenCarpet.webp);
+  align-items: center;
+  justify-content: center;
+  height: 100vh; 
+  padding: 4rem 2rem;
+  gap: 4rem;
+}
+
+.form-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-image img {
+  width: 70%;
+  max-width: 400px;
+  height: auto;
+  filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.2));
+}
+
+.form-content {
+  flex: 1;
+  text-align: left;
+}
+
+.form-content h1 {
+  font-family: "SolitaireFont", sans-serif;
+  font-size: 3rem;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.add-form input[type="text"] {
+  padding: 1rem 1.2rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+.add-form input[type="text"]:focus {
+  border-color: #0077ff;
+}
+
+.score-submit-button {
+  padding: 0.9rem 2rem;
+  background: #0077ff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.25s ease-in-out, transform 0.2s;
+}
+
+.add-form input[type="submit"]:hover {
+  background: #005ed9;
+  transform: translateY(-2px);
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: #016806;
+  color: #ffffff;
+  margin-top: auto;
+  font-size: 0.9rem;
+  border-top: 1px solid #003d03;
+}
+
+@media (max-width: 600px) {
+  .download-buttons {
+    flex-direction: column;
+  }
+
+  .hero-image {
+    width: 200px;
+  }
+}
+
+@media (max-width: 900px) {
+  .add-form-container {
+    flex-direction: column;
+    text-align: center;
+    height: auto;
+    padding: 3rem 1rem;
+  }
+
+  .form-image img {
+    width: 60%;
+    margin-bottom: 2rem;
+  }
+
+  .form-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .add-form {
+    align-items: center;
+  }
+}

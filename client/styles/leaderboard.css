@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(to bottom right, #a8e6a3, #006400);;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent; 
+  z-index: 10; 
+}
+
+
+.header .logo a{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff; 
+    text-decoration: none;
+}
+
+.header .logo img{
+    background: fixed;
+    background-color: transparent;
+    width: 80px;
+    height: auto;
+}
+
+.leaderboard-container {
+  flex: 1;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leaderboard-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.leaderboard-table {
+  border-collapse: collapse;
+  width: 90%;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  text-align: center;
+  padding: 0.9rem;
+  border-bottom: 1px solid #eee;
+}
+
+.leaderboard-table th {
+  background: #006400;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: #a8e6a3; /* light green */
+}
+
+.leaderboard-table tr:nth-child(odd) {
+  background-color: #80c680; /* medium green */
+}
+
+.leaderboard-table tr:hover {
+  background-color: #66bb6a; /* slightly darker on hover */
+}
+
+
+.no-scores-header,
+.error-message {
+  font-size: 1.1rem;
+  color: #444;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.no-scores-header a {
+  color: #0077ff;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.no-scores-header a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+ background: #004d00;
+  color: #fff;
+  font-size: 0.9rem;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+}
+
+@media (max-width: 600px) {
+  .leaderboard-table th,
+  .leaderboard-table td {
+    font-size: 0.85rem;
+    padding: 0.7rem;
+  }
+
+  .leaderboard-title {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home | Solitaire</title>
+  <link rel="stylesheet" href="styles/index.css" />
+</head>
+<body>
+
+  <main>
+    <section class="hero-container">
+        <header class="header">
+            <div class="logo">
+                <a href= "index.html" ><img src="public/solitaireIcon.png" alt="Icon" /> </a>
+            </div>
+            <nav>
+            <ul class="nav-links">
+                <li><a href="./leaderboard.html"><img src="public/leaderBoard.png" alt ="Leaderboard" /></a></li>
+            </ul>
+            </nav>
+        </header>
+        <div class="hero-content">
+            <div class="about-section">
+                <h2>Solitaire is an amazing old school card game. Hop on and have fun trying to get to the top of the leaderboard!</h2>
+            </div>
+            <div class="download-buttons">
+            <a class="download apple-download"
+                href="https://apps.apple.com/us/app/solitaire/id359917414"
+                target="_blank"
+                >
+                <img src="public/App_Store_(iOS).svg"
+                    alt="App Store" class="store-icon-apple">
+            </a>
+            <a class="download android-download"
+                href="https://play.google.com/store/apps/details?id=com.mobilityware.solitaire"
+                target="_blank">
+                <img src="public/Google_Play_Store_badge_EN.svg"
+                    alt="Google Play" class="store-icon-android">
+            </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="add-form-container">
+        <div class="form-image">
+            <img src="public/solitaireIcon.png" alt="Solitaire Logo" />
+        </div>
+
+        <div class="form-content">
+            <h1>Enter Your Name!</h1>
+            <div  class="add-form">
+            <input type="text" id="fullNameInput" placeholder="Enter your full name..." required />
+            <button class="score-submit-button"  id="scoreSubmitButton">Submit</button>
+            </div>
+        </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Solitaire. All rights reserved.</p>
+  </footer>
+  <script src="./scripts/axios.min.js"></script>
+  <script src="./utils/displayDuration.js"></script>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>

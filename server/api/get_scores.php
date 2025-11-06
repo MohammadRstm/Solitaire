@@ -1,7 +1,7 @@
 <?php
 
 // include db connection
-include "db_connection.php";
+include "../database/db_connection.php";
 
 // prepare db query
 $sql = "SELECT * FROM Scores ORDER BY score DESC , duration ASC";
@@ -17,8 +17,15 @@ if(!$query->execute()){
 
 // fetch result
 $result = $query->get_result();
+$scores = [];
+if($result && $result->num_rows > 0){
+    while($row = $result->fetch_assoc()){
+        $scores[] = $row;
+    }
+}
+
 // send json response
-echo json_encode($result);
+echo json_encode($scores);
 
 // close query/db_connection
 $query->close();
