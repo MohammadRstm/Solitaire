@@ -2,17 +2,20 @@
 
 // include db connection
 include "../database/db_connection.php";
+// include error hadnling function
+include "../utils/sendServerError.php";
+
 
 // prepare db query
 $sql = "SELECT * FROM Scores ORDER BY score DESC , duration ASC";
 $query = $mysql->prepare($sql);
 
 if(!$query){
-    die("QUERY FAILED : " . $mysql->error);
+    sendServerError("Server error, please try again" ,$mysql->error);
 }
 
 if(!$query->execute()){
-    die("EXECUTION FAILED : " . $query->error);
+    sendServerError("Server error, please try again" ,$query->error);
 }
 
 // fetch result

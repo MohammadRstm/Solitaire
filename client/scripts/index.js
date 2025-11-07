@@ -17,10 +17,7 @@ scoreFormElem.addEventListener("click" , async () => {
         const data = response.data;
         if (data?.success){
             const {score , duration , placement} = data;
-            alert(`Your Record have been successfuly added:\n
-                   Score : ${score}\n
-                   Duration: ${displayDuration(duration)}\n
-                   Placement: ${placement}`);
+            alert(`Your Record have been successfuly added:\nScore --> ${score}\nDuration --> ${displayDuration(duration)}\nPlacement --> ${placement}`);
         }
         fullNameInputElem.value = "";
     }catch(err){

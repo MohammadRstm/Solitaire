@@ -1,6 +1,8 @@
 <?php
 // include db connection
 include "../database/db_connection.php";
+// include error hadnling function
+include "../utils/sendServerError.php";
 
 // Define range for score/duration 
 define("MAX_SCORE" , 1000);
@@ -33,28 +35,27 @@ $sql = "INSERT INTO Scores(full_name , score , duration) VALUES(? , ? , ?)";
 $query = $mysql->prepare($sql);
 
 if(!$query){
-    die("QUERY FAILED : " . $mysql->error);
+    sendServerError("Server error, please try again" ,$mysql->error);// send user friendly error
 }
 
 $query->bind_param("sii" ,$fullName , $newScore , $newDuration);
 
 if(!$query->execute()){
-    
-    die("EXECUTION FAILED : " . $query->error);
+    sendServerError("Server error, please try again", $query->error);
 }
 
 // get user's placement
-$placementSql = "SELECT COUNT(*) AS rank FROM Scores WHERE score > ? OR (score = ? AND duration < ?)";// checks how many different scores are better than the current one OR are the same but duratoin is less 
+$placementSql = "SELECT COUNT(*) AS rank FROM Scores WHERE score > ? OR (score = ? AND duration < ?)";// checks how many different scores are better than the current one OR are the same but duration is less 
 $placementQuery = $mysql->prepare($placementSql);
 
 if(!$placementQuery){
-    die("QUERY FAILED : " . $mysql->error);
+   sendServerError("Server error, please try again" ,$mysql->error);
 }
 
 $placementQuery->bind_param("iii", $newScore, $newScore, $newDuration);
 
 if (!$placementQuery->execute()){
-    die("EXECUTION FAILED : " . $placementQuery->error);
+    sendServerError("Server error, please try again", $placementQuery->error);
 }
 
 $placementResult = $placementQuery->get_result();
