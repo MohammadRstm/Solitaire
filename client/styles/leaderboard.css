@@ -77,11 +77,10 @@ body {
 }
 
 .footer {
-  background: #004d00;
-  border-top-color: #eee;
+  background-image: url();
 }
 
-/* Responsive */
+
 @media (max-width: 600px) {
   .leaderboard-table th,
   .leaderboard-table td {

@@ -80,7 +80,10 @@ body {
 
 .add-form-container {
   display: flex;
-  background-image: url(../public/greenCarpet.webp);
+  background-image: url(../public/solitaireboard.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   align-items: center;
   justify-content: center;
   height: 100vh;
@@ -153,11 +156,10 @@ body {
 }
 
 .footer {
-  background: #016806;
-  border-top-color: #003d03;
+  background-image: url(../public/solitaireboard.jpg);
 }
 
-/* Responsive */
+
 @media (max-width: 600px) {
   .download-buttons {
     flex-direction: column;
