@@ -26,9 +26,10 @@ if($result && $result->num_rows > 0){
         $scores[] = $row;
     }
 }
-
+$response["success"] = true;
+$response["scores"] = $scores;
 // send json response
-echo json_encode($scores);
+echo json_encode($response);
 
 // close query/db_connection
 $query->close();
