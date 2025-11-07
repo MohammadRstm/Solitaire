@@ -11,7 +11,9 @@ const fetchScores = async () =>{
     // API CALL TO GET SCORES
     try{
     const response = await axios.get(`${BASE_URL}/api/get_scores.php`);
-        scores = response.data;
+    const data = response.data;
+    if(data?.success){
+        scores = data.scores;
         if(scores.length > 0){
             leaderBoardTableElem.innerHTML = `
                     <table class = "leaderboard-table">
@@ -43,7 +45,11 @@ const fetchScores = async () =>{
                     to add yours!
                     </p>
                 `;
-            }
+        }
+    }else{
+        alert(data?.message);
+        console.log(data?.error);
+    }
     }catch(err){
         console.log("ERROR FETCHING SCORES : " + err);
     }

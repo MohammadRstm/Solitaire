@@ -2,17 +2,20 @@
 
 // include db connection
 include "../database/db_connection.php";
+// include error hadnling function
+include "../utils/sendServerError.php";
+
 
 // prepare db query
 $sql = "SELECT * FROM Scores ORDER BY score DESC , duration ASC";
 $query = $mysql->prepare($sql);
 
 if(!$query){
-    die("QUERY FAILED : " . $mysql->error);
+    sendServerError("Server error, please try again" ,$mysql->error);
 }
 
 if(!$query->execute()){
-    die("EXECUTION FAILED : " . $query->error);
+    sendServerError("Server error, please try again" ,$query->error);
 }
 
 // fetch result
@@ -23,9 +26,10 @@ if($result && $result->num_rows > 0){
         $scores[] = $row;
     }
 }
-
+$response["success"] = true;
+$response["scores"] = $scores;
 // send json response
-echo json_encode($scores);
+echo json_encode($response);
 
 // close query/db_connection
 $query->close();

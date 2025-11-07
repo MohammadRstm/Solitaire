@@ -17,13 +17,13 @@ scoreFormElem.addEventListener("click" , async () => {
         const data = response.data;
         if (data?.success){
             const {score , duration , placement} = data;
-            alert(`Your Record have been successfuly added:\n
-                   Score : ${score}\n
-                   Duration: ${displayDuration(duration)}\n
-                   Placement: ${placement}`);
+            alert(`Your Record have been successfuly added:\nScore --> ${score}\nDuration --> ${displayDuration(duration)}\nPlacement --> ${placement}`);
+        }else{
+            alert(data?.message);// user friendly message
+            console.log(data?.error);// used for debugging
         }
         fullNameInputElem.value = "";
     }catch(err){
-        console.log(err);
+        console.log("ERROR SUBMITTING SCORE : " + err);
     }
 });
